@@ -1,0 +1,44 @@
+- if current_user.present?
+  ul#slide-out.sidenav
+    li
+      .user-view
+        .background
+          = image_tag "side.jpg"
+        a href="#user"
+          = image_tag current_user.image_url, class: "circle"
+        a href="#name"
+          span.white-text.name
+            = current_user.username
+        a href="#email"
+          span.white-text.email
+    li
+      a.waves-effect href="#!"
+        i.material-icons
+          | forum
+        | 質問を作る
+    li
+      a.waves-effect href="#!"
+        i.material-icons
+          | reply
+        | 質問に答える
+    li
+      .divider
+    li
+      a.subheader
+        | アカウント
+    - if current_user.present?
+      li
+        a.waves-effect href="#!"
+          | ユーザー設定
+    li
+      - if current_user.present?
+        = link_to "ログアウト", '/logout', class: "waves-effect"
+      - else
+        = link_to 'サインイン', '/auth/twitter', class: "waves-effect"
+    - if current_user.blank?
+      li
+        = link_to 'ユーザー登録', '/auth/twitter', class: "waves-effect"
+
+javascript:
+  var elem = document.querySelector('.sidenav');
+  var instance = M.Sidenav.init(elem);
