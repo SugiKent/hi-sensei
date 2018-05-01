@@ -8,11 +8,12 @@ import * as actions from '../actions/Question';
 // Storeが持つ状態(state)をどのようにpropsに混ぜ込むかを決める
 // propsはconnectによって'../components/Questions'に渡される
 // 引数のstateはただの引数としての名前。第一引数がStoreのstateという決まり
+// よって、`state.question.category`のquestionは`reducers/*.js`のファイル名となる
 const mapStateToProps = (state, ownProps) => ({
   categoryId: ownProps.categoryId,
-  category: state.Question.category,
-  ranking: state.Question.ranking,
-  error: state.Question.error
+  category: state.question.category,
+  ranking: state.question.ranking,
+  error: state.question.error
 });
 
 // Reducerにアクションを通知する関数dispatchをどのようにpropsに混ぜ込むかを決める
