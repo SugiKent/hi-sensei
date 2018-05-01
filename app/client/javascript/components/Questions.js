@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './card'
 
-export default class Ranking extends React.Component {
+export default class Questions extends React.Component {
 
   componentWillMount() {
+    // containersのonMountを実行
     this.props.onMount(this.props.categoryId);
   }
 
@@ -41,7 +42,7 @@ export default class Ranking extends React.Component {
 
 }
 
-Ranking.propTypes = {
+Questions.propTypes = {
   categoryId: PropTypes.string.isRequired,
   onMount: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
@@ -61,6 +62,6 @@ Ranking.propTypes = {
   error: PropTypes.bool.isRequired
 };
 
-Ranking.defaultProps = {
+Questions.defaultProps = {
   categoryId: '1'
 }

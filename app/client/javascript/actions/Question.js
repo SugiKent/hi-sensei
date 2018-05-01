@@ -21,6 +21,7 @@ const finishRequest = category => ({
   payload: {category},
 });
 
+// containersから呼び出される
 export const fetchRanking = categoryId => {
   return async (dispatch, getState) => {
     const categories = getState().shopping.categories;
@@ -31,6 +32,8 @@ export const fetchRanking = categoryId => {
       return;
     }
 
+    // dispatchによって、reducers/Questionを呼び出す
+    // startRequestはstateのrankingを初期化するだけ
     dispatch(startRequest(category));
 
     const queryString = qs.stringify({
@@ -39,8 +42,9 @@ export const fetchRanking = categoryId => {
     });
 
     try {
-      const responce = await fetchJsonp(`${API_URL}?${queryString}`);
-      const data = await responce.json();
+      const response = await fetchJsonp(`${API_URL}?${queryString}`);
+      const data = await response.json();
+      // 受け取ったjsonをstateに当てる
       dispatch(receiveData(category, null, data));
     } catch (err) {
       dispatch(receiveData(category, err));

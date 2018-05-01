@@ -21,6 +21,7 @@ const initialState = {
   error: false
 };
 
+// actions/Questionsのdispatch(startRequest(category))で呼び出される
 export default (state = initialState, action) => {
   switch(action.type) {
     case 'START_REQUEST':
@@ -35,6 +36,8 @@ export default (state = initialState, action) => {
       ? { ...state, error: true }
       : {
         ...state,
+        // responseはactionsのreceiveDataメソッドから渡される
+        // さらに、このファイルのgetRankingメソッドでresponseのjsonを整形する
         ranking: getRanking(action.payload.response)
       };
 
