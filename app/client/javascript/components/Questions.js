@@ -6,33 +6,22 @@ export default class Questions extends React.Component {
 
   componentWillMount() {
     // containersのonMountを実行
-    this.props.onMount(this.props.categoryId);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.categoryId !== nextProps.categoryId) {
-      this.props.onUpdate(nextProps.categoryId);
-    }
+    this.props.onMount();
   }
 
   render() {
-    const {category,ranking,error} = this.props;
+    const {questions,error} = this.props;
     return (
       <div className="row">
-        <h2>{
-          typeof category !== 'undefined'
-            ? `${category.name}のランキング`
-            : ''
-        }</h2>
 
         {(() => {
           if (error) {
             return <p>エラーが発生</p>;
-          } else if (typeof ranking === 'undefined') {
+          } else if (typeof questions === 'undefined') {
             return <p>読み込み中・・・</p>
           } else {
-            return ranking.map((item,i)=>(
-              <Card key={`ranking-${item.code}`} item={item} />
+            return questions.map((item,i)=>(
+              <Card key={`question-${item.id}`} item={item} />
             ))
           }
         })()}

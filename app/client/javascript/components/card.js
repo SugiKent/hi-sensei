@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 export default class Card extends React.Component {
   render() {
     return (
-      <div key={`ranking-item-${this.props.item.code}`} className="col s12 m7">
+      <div key={`question-card-${this.props.item.id}`} className="col s12 m6">
         <div className="card">
           <div className="card-image">
-            <img src={this.props.item.imageUrl} alt={this.props.item.name} />
           </div>
           <div className="card-content">
             <p>
-              {this.props.item.name}
+              {this.props.item.title}
             </p>
           </div>
           <div className="card-action">
-            <a href={this.props.item.url} target="_blank">This is a link</a>
+            <a href={`/questions/${this.props.item.id}`}>編集</a>
+            <a href={`/questions/${this.props.item.id}`}>解決済みにする</a>
           </div>
         </div>
       </div>
@@ -25,9 +25,7 @@ export default class Card extends React.Component {
 
 Card.propTypes = {
   item: PropTypes.shape({
-    code: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
   })
 }

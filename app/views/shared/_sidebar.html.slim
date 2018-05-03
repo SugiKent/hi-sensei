@@ -12,9 +12,14 @@
         a href="#email"
           span.white-text.email
     li
-      a.waves-effect href="#!"
+      = link_to questions_path, class: "waves-effect" do
         i.material-icons
           | forum
+        | 質問一覧
+    li
+      = link_to new_question_path, class: "waves-effect" do
+        i.material-icons
+          | add_circle
         | 質問を作る
     li
       a.waves-effect href="#!"

@@ -1,5 +1,5 @@
 header
-  nav.Header.light-green.darken-1
+  nav.Header.indigo.lighten-1
     .nav-wrapper
       - if current_user.present?
         a.sidenav-trigger.show-on-large data-target="slide-out" href="#"
@@ -12,6 +12,6 @@ header
             = image_tag current_user.image_url, class: "Header__user-image circle"
           - else
             = link_to 'ユーザー登録', '/auth/twitter'
-        li
-          - if current_user.blank?
+        - if current_user.blank?
+          li
             = link_to 'サインイン', '/auth/twitter'

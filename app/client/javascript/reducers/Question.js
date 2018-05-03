@@ -1,33 +1,29 @@
-const getRanking = response => {
-  const ranking = [];
-  const itemLength = response.ResultSet.totalResultsReturned;
+const getQuestions = response => {
+  const questions = [];
+  const itemLength = response.count;
   for (let index = 0; index < itemLength; index++) {
-    const item = response.ResultSet['0'].Result[index + ''];
+    const item = response.questions[index + ''];
 
-    ranking.push({
-      code: item.Code,
-      name: item.Name,
-      url: item.Url,
-      imageUrl: item.Image.Medium
+    questions.push({
+      id: item.id,
+      title: item.title,
     })
   }
 
-  return ranking;
+  return questions;
 };
 
 const initialState = {
-  category: undefined,
-  ranking: undefined,
+  questions: undefined,
   error: false
 };
 
-// actions/Questionsのdispatch(startRequest(category))で呼び出される
+// actions/Questionsのdispatch(startRequest(category))などで呼び出される
 export default (state = initialState, action) => {
   switch(action.type) {
     case 'START_REQUEST':
       return {
-        category: action.payload.category,
-        ranking: undefined,
+        questions: undefined,
         error: false
       };
 
@@ -38,7 +34,7 @@ export default (state = initialState, action) => {
         ...state,
         // responseはactionsのreceiveDataメソッドから渡される
         // さらに、このファイルのgetRankingメソッドでresponseのjsonを整形する
-        ranking: getRanking(action.payload.response)
+        questions: getQuestions(action.payload.response)
       };
 
     default:
