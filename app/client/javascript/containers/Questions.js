@@ -2,8 +2,8 @@ import {connect} from 'react-redux';
 import Questions from '../components/Questions';
 import * as actions from '../actions/Question';
 
-// containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectされるファイル
-// 全てのcomponentでconnectする冗長性を防ぐ
+// containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectさせるファイル
+// 全てのcomponentでconnectするという冗長性を防ぐ
 
 // Storeが持つ状態(state)をどのようにpropsに混ぜ込むかを決める
 // propsはconnectによって'../components/Questions'に渡される
