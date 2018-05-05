@@ -19,7 +19,7 @@ class QuestionForm extends React.Component {
             />
           </div>
           <div className="col s12 right-align">
-            <button type="submit" className="waves-effect waves-light btn"><i className="material-icons left">save</i>作成</button>
+            <button type="submit" className="waves-effect waves-light btn"><i className="material-icons left">save</i>保存</button>
           </div>
         </div>
       </form>

@@ -28,6 +28,7 @@ export default class QuestionShow extends React.Component {
             return (
               <div className="row">
                 <QuestionForm onSubmit={values => this.clickSave(values, question)} question={question} />
+
               </div>
             );
           }

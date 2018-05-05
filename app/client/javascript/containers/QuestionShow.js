@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import QuestionShow from '../components/QuestionShow';
+import QuestionShow from '../components/questions/QuestionShow';
 import * as actions from '../actions/QuestionShow';
 
 // containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectさせるファイル
@@ -21,9 +21,6 @@ const mapDispatchToProps = dispatch => ({
   // components/Questions.jsで呼び出される
   // componentのファイル内で`actions.fetchRanking(categoryId)`を書いてもいいが、ここで一気に関数を定義してpropsとして渡す。
   onMount (questionId) {
-    dispatch(actions.fetchQuestion(questionId));
-  },
-  onUpdate (questionId) {
     dispatch(actions.fetchQuestion(questionId));
   },
   toUpdate (questionData,questionId) {

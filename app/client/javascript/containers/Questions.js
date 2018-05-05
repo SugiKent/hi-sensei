@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Questions from '../components/Questions';
+import Questions from '../components/questions/Questions';
 import * as actions from '../actions/Questions';
 
 // containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectさせるファイル
