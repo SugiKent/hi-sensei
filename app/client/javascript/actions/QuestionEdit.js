@@ -60,3 +60,24 @@ export const updateQuestion = (questionData, questionId) => {
     dispatch(finishRequest());
   }
 };
+
+export const removeContent = (questionId, contentIndex) => {
+  return async (dispatch, getState) => {
+    axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+
+    const url = '/api/v1/question_contents';
+
+    try {
+      await axios
+        .delete(`${url}/${questionId}`,{params: {contentIndex: contentIndex}})
+        .then(results => {
+          console.log(results);
+          dispatch(receiveData(null, results.data));
+        });
+    } catch (err) {
+      dispatch(receiveData(err));
+    }
+
+    dispatch(finishRequest());
+  }
+};

@@ -15,7 +15,7 @@ export default class Card extends React.Component {
             </p>
           </div>
           <div className="card-action">
-            <Link to={`/question/${this.props.item.id}`}>編集</Link>
+            <Link to={`/question/${this.props.item.id}/edit`}>編集</Link>
             <a href={`/questions/${this.props.item.id}`}>解決済みにする</a>
           </div>
         </div>
@@ -26,7 +26,7 @@ export default class Card extends React.Component {
 
 Card.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })
 }

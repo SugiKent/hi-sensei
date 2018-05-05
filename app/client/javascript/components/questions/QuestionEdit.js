@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import QuestionForm from './QuestionForm'
 
-export default class QuestionShow extends React.Component {
+export default class QuestionEdit extends React.Component {
 
   componentWillMount() {
     // containersのonMountを実行
@@ -27,8 +27,7 @@ export default class QuestionShow extends React.Component {
           } else {
             return (
               <div className="row">
-                <QuestionForm onSubmit={values => this.clickSave(values, question)} question={question} />
-
+                <QuestionForm onSubmit={values => this.clickSave(values, question)} question={question} removeContent={this.props.removeContent} />
               </div>
             );
           }
@@ -39,13 +38,19 @@ export default class QuestionShow extends React.Component {
 
 }
 
-QuestionShow.propTypes = {
+QuestionEdit.propTypes = {
   onMount: PropTypes.func.isRequired,
   toUpdate: PropTypes.func.isRequired,
+  removeContent: PropTypes.func.isRequired,
 
   question: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+  }),
+  question_contents: PropTypes.arrayOf({
+    id: PropTypes.number.isRequired,
+    question_id: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired,
   }),
   error: PropTypes.bool.isRequired
 };

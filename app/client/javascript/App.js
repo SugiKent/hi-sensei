@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Questions from './containers/Questions';
-import QuestionShow from './containers/QuestionShow';
+import QuestionEdit from './containers/QuestionEdit';
 
 class App extends Component {
   render() {
@@ -11,9 +11,9 @@ class App extends Component {
           <Switch>
             <Route path='/questions' component={Questions} />
             <Route
-              path="/question/:id"
+              path="/question/:id/edit"
               render={
-                ({match}) => <QuestionShow questionId={match.params.id} />
+                ({match}) => <QuestionEdit questionId={match.params.id} />
               }
             />
           </Switch>

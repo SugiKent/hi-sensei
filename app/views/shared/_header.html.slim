@@ -1,17 +1,17 @@
 header
-  nav.Header.indigo.lighten-1
+  nav.Header.blue-grey.lighten-5
     .nav-wrapper
       - if current_user.present?
-        a.sidenav-trigger.show-on-large data-target="slide-out" href="#"
+        a.sidenav-trigger.show-on-large.blue-grey-text.text-darken-3 data-target="slide-out" href="#"
           i.material-icons
             | menu
-      = link_to 'Hi-Sensei', root_path, class: "brand-logo"
+      = link_to 'Hi-Sensei', root_path, class: "brand-logo blue-grey-text text-darken-3"
       ul#nav-mobile.right.hide-on-med-and-down
         li
           - if current_user.present?
             = image_tag current_user.image_url, class: "Header__user-image circle"
           - else
-            = link_to 'ユーザー登録', '/auth/twitter'
+            = link_to 'ユーザー登録', '/auth/twitter', class: "blue-grey-text text-darken-3"
         - if current_user.blank?
           li
-            = link_to 'サインイン', '/auth/twitter'
+            = link_to 'サインイン', '/auth/twitter', class: "blue-grey-text text-darken-3"

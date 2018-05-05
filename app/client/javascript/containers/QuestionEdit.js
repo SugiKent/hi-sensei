@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import QuestionShow from '../components/questions/QuestionShow';
-import * as actions from '../actions/QuestionShow';
+import QuestionEdit from '../components/questions/QuestionEdit';
+import * as actions from '../actions/QuestionEdit';
 
 // containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectさせるファイル
 // 全てのcomponentでconnectするという冗長性を防ぐ
@@ -11,8 +11,8 @@ import * as actions from '../actions/QuestionShow';
 // よって、`state.question.category`のquestionは`reducers/*.js`のファイル名となる。正確には`reducers/index.js`で定義した名前
 const mapStateToProps = (state, ownProps) => ({
   questionId: ownProps.questionId,
-  question: state.questionShow.question,
-  error: state.questionShow.error
+  question: state.questionEdit.question,
+  error: state.questionEdit.error
 });
 
 // Reducerにアクションを通知する関数dispatchをどのようにpropsに混ぜ込むかを決める
@@ -25,10 +25,13 @@ const mapDispatchToProps = dispatch => ({
   },
   toUpdate (questionData,questionId) {
     dispatch(actions.updateQuestion(questionData,questionId));
+  },
+  removeContent (questionId, contentIndex) {
+    dispatch(actions.removeContent(questionId, contentIndex));
   }
 });
 
 // ReactのComponentをReduxの流れに乗せる
 // StoreやReducerと繋がれるように細工されたComponentが返り値になる
 // このQuestionsはcomponents/Questions.jsを指す
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionShow);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionEdit);

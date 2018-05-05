@@ -15,12 +15,12 @@ class Api::V1::QuestionsController < SessionsController
 
   def update
     @question = Question.find(params[:id])
-    @question.update_attributes(params_question)
-    render json: {question: @question}
+    @question.update(params_question)
+    render json: {question: @question, question_contents: @question.question_contents}
   end
 
   private
   def params_question
-    params.require(:question).permit(:title)
+    params.require(:question).permit(:title, question_contents_attributes: [:_destroy, :id, :content])
   end
 end

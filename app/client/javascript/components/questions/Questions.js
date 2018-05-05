@@ -37,7 +37,7 @@ Questions.propTypes = {
 
   questions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
     })
   ),

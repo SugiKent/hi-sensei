@@ -1,5 +1,6 @@
 const initialState = {
   question: undefined,
+  question_content: undefined,
   error: false
 };
 
@@ -9,6 +10,7 @@ export default (state = initialState, action) => {
     case 'START_REQUEST':
       return {
         question: undefined,
+        question_content: undefined,
         error: false
       };
 
@@ -19,7 +21,8 @@ export default (state = initialState, action) => {
         ...state,
         // responseはactionsのreceiveDataメソッドから渡される
         // さらに、このファイルのgetRankingメソッドでresponseのjsonを整形する
-        question: action.payload.response.question
+        question: action.payload.response.question,
+        question_contents: action.payload.response.question_contents
       };
 
     default:

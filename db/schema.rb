@@ -13,17 +13,17 @@
 ActiveRecord::Schema.define(version: 2018_05_05_021401) do
 
   create_table "question_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "question_id"
+    t.string "question_id"
     t.text "content"
     t.integer "content_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_question_contents_on_question_id"
   end
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
+    t.string "public_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
@@ -38,6 +38,5 @@ ActiveRecord::Schema.define(version: 2018_05_05_021401) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "question_contents", "questions"
   add_foreign_key "questions", "users"
 end

@@ -1,0 +1,20 @@
+.Form {
+  &__group {
+    margin: 16px auto;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  &__header {
+    padding: 15px 10px;
+    background-color: #fafbfc;
+    border-bottom: 1px solid #e1e4e8;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+  &__textarea {
+    border: 0px;
+    border-radius: 3px;
+    // border-bottom: 1px solid #f57f17;
+    padding: 15px 20px;
+  }
+}

@@ -1,16 +1,57 @@
 import {connect} from 'react-redux';
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
-// import FieldInput from './formParts/fieldInput'
+import {Field, FieldArray, reduxForm} from 'redux-form';
+import QuestionContentForm from './questionContentForm'
 
 class QuestionForm extends React.Component {
 
+  removeField(fields, index) {
+    if(window.confirm("削除してよろしいですか？\n削除した項目は復元できません。")){
+      const questionId = location.pathname.match(/\d/);
+      fields.remove(index);
+      M.toast({html: '削除しました。'});
+      this.props.removeContent(questionId[0], index);
+    }
+  }
+
   render() {
     const {handleSubmit, question} = this.props;
+    const renderContents = ({ fields }) => (
+      <div>
+        <ul className="list-group">
+          {fields.map(renderContentFields)}
+        </ul>
+        <div className="right">
+          <button className="btn-floating waves-effect waves-light red" type="button" onClick={() => fields.push({})}><i className="material-icons">add</i>追加</button>
+        </div>
+      </div>
+    );
+
+    const renderContentFields = (question_contents_attributes, index, fields) => (
+      <li key={index} className={'list-group-item'}>
+        <div className="Form__group">
+          <div className="Form__header">
+            <a className="btn-small waves-effect waves-light blue-grey darken-3" style={{marginRight: '10px'}} onClick={() => this.removeField(fields, index)}><i className="material-icons left">delete</i>削除</a>
+          </div>
+          <Field
+            name={`${question_contents_attributes}.content`}
+            type="text"
+            component={QuestionContentForm}
+          />
+        </div>
+      </li>
+    );
+
+    /* 保存ボタン
+      <div className="col s12 right-align">
+        <button type="submit" className="waves-effect waves-light btn"><i className="material-icons left">save</i>保存</button>
+      </div>
+    */
+
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onBlur={handleSubmit}>
         <div className="row">
-          <div className="input-field col s12">
+          <div className="input-field col m6 s12">
             <Field
               id={'title'}
               name="title"
@@ -18,19 +59,24 @@ class QuestionForm extends React.Component {
               component="input"
             />
           </div>
-          <div className="col s12 right-align">
-            <button type="submit" className="waves-effect waves-light btn"><i className="material-icons left">save</i>保存</button>
+          <div className="input-field col s12">
+            <FieldArray
+              id='question_contents_attributes'
+              name="question_contents_attributes"
+              component={renderContents}
+            />
           </div>
         </div>
       </form>
     )
+
   }
 }
+
 
 // QuestionFormをreduxForm化する
 let InitializedQuestionForm = reduxForm({
   form: 'questionForm',
-  initialValues: {title: 'terao'},
   enableReinitialize: true,
 })(QuestionForm);
 
@@ -38,7 +84,8 @@ let InitializedQuestionForm = reduxForm({
 InitializedQuestionForm = connect(
   state => ({
     initialValues: {
-      title: state.questionShow.question.title
+      title: state.questionEdit.question.title,
+      question_contents_attributes: state.questionEdit.question_contents
     }
   })
 )(InitializedQuestionForm);
