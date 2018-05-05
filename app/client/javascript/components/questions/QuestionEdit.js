@@ -10,7 +10,6 @@ export default class QuestionEdit extends React.Component {
   }
 
   clickSave(values, question) {
-    console.log(values);
     M.toast({html: '保存しました。'});
     this.props.toUpdate(values, question.id);
   }
@@ -44,12 +43,12 @@ QuestionEdit.propTypes = {
   removeContent: PropTypes.func.isRequired,
 
   question: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }),
   question_contents: PropTypes.arrayOf({
     id: PropTypes.number.isRequired,
-    question_id: PropTypes.number.isRequired,
+    question_id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
   }),
   error: PropTypes.bool.isRequired

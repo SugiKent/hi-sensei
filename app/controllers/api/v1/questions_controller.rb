@@ -9,8 +9,8 @@ class Api::V1::QuestionsController < SessionsController
   end
 
   def create
-    @question = Question.create(question: params[:question])
-    render json: @question
+    @question = current_user.questions.create(params_question)
+    render json: {question: @question, question_contents: @question.question_contents}
   end
 
   def update
