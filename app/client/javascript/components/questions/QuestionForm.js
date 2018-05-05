@@ -7,7 +7,7 @@ class QuestionForm extends React.Component {
 
   removeField(fields, index) {
     if(window.confirm("削除してよろしいですか？\n削除した項目は復元できません。")){
-      const questionId = location.pathname.match(/\d/);
+      const questionId = location.pathname.match(/[0-9]+/);
       fields.remove(index);
       M.toast({html: '削除しました。'});
       this.props.removeContent(questionId[0], index);
@@ -31,7 +31,18 @@ class QuestionForm extends React.Component {
       <li key={index} className={'list-group-item'}>
         <div className="Form__group">
           <div className="Form__header">
-            <a className="btn-small waves-effect waves-light blue-grey darken-3" style={{marginRight: '10px'}} onClick={() => this.removeField(fields, index)}><i className="material-icons left">delete</i>削除</a>
+            <div className="row">
+              <div className="col s10">
+                <Field
+                  name={`${question_contents_attributes}.title`}
+                  type="text"
+                  component="input"
+                />
+              </div>
+              <div className="col s2">
+                <a className="btn-small waves-effect waves-light blue-grey darken-3" style={{marginRight: '10px'}} onClick={() => this.removeField(fields, index)}><i className="material-icons left">delete</i>削除</a>
+              </div>
+            </div>
           </div>
           <Field
             name={`${question_contents_attributes}.content`}

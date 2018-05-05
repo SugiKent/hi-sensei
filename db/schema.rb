@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_05_05_021401) do
 
   create_table "question_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "question_id"
+    t.text "title"
     t.text "content"
     t.integer "content_type"
     t.datetime "created_at", null: false

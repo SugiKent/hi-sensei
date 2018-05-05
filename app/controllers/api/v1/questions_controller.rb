@@ -21,6 +21,6 @@ class Api::V1::QuestionsController < SessionsController
 
   private
   def params_question
-    params.require(:question).permit(:title, question_contents_attributes: [:_destroy, :id, :content])
+    params.require(:question).permit(:title, question_contents_attributes: [:id, :title, :content])
   end
 end
