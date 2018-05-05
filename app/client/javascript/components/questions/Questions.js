@@ -25,6 +25,12 @@ export default class Questions extends React.Component {
             ))
           }
         })()}
+
+        <div className="fixed-action-btn">
+          <a className="btn-floating btn-large red" href="/question/new">
+            <i className="large material-icons">add</i>
+          </a>
+        </div>
       </div>
     );
   }
