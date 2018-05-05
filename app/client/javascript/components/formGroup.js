@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export default class Card extends React.Component {
+export default class FromGroup extends React.Component {
   render() {
     return (
       <div key={`question-card-${this.props.item.id}`} className="col s12 m6">

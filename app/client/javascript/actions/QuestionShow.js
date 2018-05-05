@@ -21,7 +21,7 @@ const finishRequest = () => ({
 });
 
 // containersから呼び出される
-export const fetchQuestions = () => {
+export const fetchQuestion = (questionId) => {
   return async (dispatch, getState) => {
 
     // dispatchによって、reducers/Questionを呼び出す
@@ -30,7 +30,25 @@ export const fetchQuestions = () => {
 
     try {
       await axios
-        .get(API_URL)
+        .get(`${API_URL}/${questionId}`)
+        .then(results => {
+          console.log(results);
+          dispatch(receiveData(null, results.data));
+        });
+    } catch (err) {
+      dispatch(receiveData(err));
+    }
+
+    dispatch(finishRequest());
+  }
+};
+
+export const updateQuestion = (questionData, questionId) => {
+  return async (dispatch, getState) => {
+    axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+    try {
+      await axios
+        .patch(`${API_URL}/${questionId}`,{question: questionData})
         .then(results => {
           console.log(results);
           dispatch(receiveData(null, results.data));

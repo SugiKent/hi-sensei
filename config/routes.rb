@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :questions
+  get 'questions', to: 'questions#index'
+  get 'question/*path', to: 'questions#index'
 
   namespace :api, format: 'json' do
     namespace :v1  do

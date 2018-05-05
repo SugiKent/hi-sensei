@@ -6,6 +6,7 @@ import {
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import {routerReducer,routerMiddleware} from 'react-router-redux';
+import { reducer as reduxFormReducer } from 'redux-form';
 
 import * as reducers from './reducers';
 
@@ -14,6 +15,7 @@ export default function createStore(history) {
     combineReducers({
       ...reducers,
       router: routerReducer,
+      form: reduxFormReducer,
     }),
     applyMiddleware(
       logger,

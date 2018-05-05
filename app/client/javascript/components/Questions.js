@@ -32,25 +32,14 @@ export default class Questions extends React.Component {
 }
 
 Questions.propTypes = {
-  categoryId: PropTypes.string.isRequired,
   onMount: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
 
-  category: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }),
-  ranking: PropTypes.arrayOf(
+  questions: PropTypes.arrayOf(
     PropTypes.shape({
-      code: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
     })
   ),
   error: PropTypes.bool.isRequired
 };
-
-Questions.defaultProps = {
-  categoryId: '1'
-}
