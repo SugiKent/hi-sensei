@@ -19,7 +19,7 @@ export default class Card extends React.Component {
           </div>
           <div className="card-action">
             <Link to={`/question/${this.props.item.id}/edit`}>編集</Link>
-            <Link to="#" onClick={() => this.props.toggleSolved(this.props.item.id)}>{word}</Link>
+            <Link to="#" onClick={() => this.props.toggleSolved(this.props.item.id, 'all')}>{word}</Link>
           </div>
         </div>
       </div>

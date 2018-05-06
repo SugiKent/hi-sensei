@@ -1,7 +1,7 @@
 class Api::V1::QuestionsController < SessionsController
   before_action :sign_in_required
   def index
-    @questions = current_user.questions
+    @questions = current_user.questions.order('updated_at DESC').sort_by { |q| q.solved? ? 1 : 0 }
   end
 
   def show
@@ -25,10 +25,10 @@ class Api::V1::QuestionsController < SessionsController
     @question.save
 
     @questions = current_user.questions
-    if request.fullpath == '/questions'
+    if params[:responseType] == 'all'
       render :index
     else
-      render json: {question: @question, question_contents: @question.question_contents}    
+      render json: {question: @question, question_contents: @question.question_contents}
     end
   end
 

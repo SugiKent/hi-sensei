@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Card from './card'
 import Preloader from '../common/preloder';
 
@@ -28,9 +29,9 @@ export default class Questions extends React.Component {
         })()}
 
         <div className="fixed-action-btn">
-          <a className="btn-floating btn-large red" href="/question/new">
+          <Link to="/question/new" className="btn-floating btn-large red">
             <i className="large material-icons">add</i>
-          </a>
+          </Link>
         </div>
       </div>
     );

@@ -44,7 +44,7 @@ export const fetchQuestions = () => {
 };
 
 // containersから呼び出される
-export const toggleSolved = (questionId) => {
+export const toggleSolved = (questionId, responseType) => {
   return async (dispatch, getState) => {
 
     axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
@@ -55,9 +55,8 @@ export const toggleSolved = (questionId) => {
 
     try {
       await axios
-        .patch(`${API_URL}/${questionId}/toggle_solved`)
+        .patch(`${API_URL}/${questionId}/toggle_solved`,{responseType: responseType})
         .then(results => {
-          console.log(results);
           dispatch(receiveData(null, results.data));
         });
     } catch (err) {

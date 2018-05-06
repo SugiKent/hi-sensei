@@ -25,8 +25,8 @@ const mapDispatchToProps = dispatch => ({
   onUpdate () {
     dispatch(actions.fetchQuestions());
   },
-  toggleSolved (questionId) {
-    dispatch(actions.toggleSolved(questionId));
+  toggleSolved (questionId, responseType) {
+    dispatch(actions.toggleSolved(questionId, responseType));
   },
 });
 

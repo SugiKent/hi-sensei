@@ -31,8 +31,8 @@ const mapDispatchToProps = dispatch => ({
   removeContent (questionId, contentIndex) {
     dispatch(actions.removeContent(questionId, contentIndex));
   },
-  toggleSolved (questionId) {
-    dispatch(toggleSolved(questionId));
+  toggleSolved (questionId, responseType) {
+    dispatch(toggleSolved(questionId, responseType));
   },
 });
 
