@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     namespace :v1  do
-      resources :questions
+      resources :questions do
+        patch :toggle_solved
+      end
       resources :question_contents
     end
   end

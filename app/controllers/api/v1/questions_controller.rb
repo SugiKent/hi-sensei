@@ -19,6 +19,14 @@ class Api::V1::QuestionsController < SessionsController
     render json: {question: @question, question_contents: @question.question_contents}
   end
 
+  def toggle_solved
+    @question = Question.find(params[:question_id])
+    @question.toggle(:solved)
+
+    @questions = current_user.questions
+    render :index
+  end
+
   private
   def params_question
     params.require(:question).permit(:title, question_contents_attributes: [:id, :title, :content])

@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_05_05_021401) do
     t.bigint "user_id"
     t.string "title"
     t.string "public_id"
+    t.boolean "solved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"

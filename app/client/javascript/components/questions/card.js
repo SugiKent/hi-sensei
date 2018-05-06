@@ -16,7 +16,7 @@ export default class Card extends React.Component {
           </div>
           <div className="card-action">
             <Link to={`/question/${this.props.item.id}/edit`}>編集</Link>
-            <a href={`/questions/${this.props.item.id}`}>解決済みにする</a>
+            <a onClick={() => this.props.toggleSolved(this.props.item.id)}>解決済みにする</a>
           </div>
         </div>
       </div>
@@ -25,8 +25,11 @@ export default class Card extends React.Component {
 }
 
 Card.propTypes = {
+  toggleSolved: PropTypes.func.isRequired,
+
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    solved: PropTypes.bool,
   })
 }

@@ -42,3 +42,28 @@ export const fetchQuestions = () => {
     dispatch(finishRequest());
   }
 };
+
+// containersから呼び出される
+export const toggleSolved = (questionId) => {
+  return async (dispatch, getState) => {
+
+    axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+
+    // dispatchによって、reducers/Questionを呼び出す
+    // startRequestはstateのrankingを初期化するだけ
+    dispatch(startRequest());
+
+    try {
+      await axios
+        .patch(`${API_URL}/${questionId}/toggle_solved`)
+        .then(results => {
+          console.log(results);
+          dispatch(receiveData(null, results.data));
+        });
+    } catch (err) {
+      dispatch(receiveData(err));
+    }
+
+    dispatch(finishRequest());
+  }
+};

@@ -24,7 +24,10 @@ const mapDispatchToProps = dispatch => ({
   },
   onUpdate () {
     dispatch(actions.fetchQuestions());
-  }
+  },
+  toggleSolved (questionId) {
+    dispatch(actions.toggleSolved(questionId));
+  },
 });
 
 // ReactのComponentをReduxの流れに乗せる

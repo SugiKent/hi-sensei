@@ -7,6 +7,7 @@ const getQuestions = response => {
     questions.push({
       id: item.id,
       title: item.title,
+      solved: item.solved,
     })
   }
 

@@ -37,6 +37,7 @@ QuestionNew.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    solved: PropTypes.bool,
   }),
   question_contents: PropTypes.arrayOf({
     id: PropTypes.number.isRequired,

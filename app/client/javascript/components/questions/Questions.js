@@ -21,7 +21,7 @@ export default class Questions extends React.Component {
             return <p>読み込み中・・・</p>
           } else {
             return questions.map((item,i)=>(
-              <Card key={`question-${item.id}`} item={item} />
+              <Card key={`question-${item.id}`} toggleSolved={this.props.toggleSolved} item={item} />
             ))
           }
         })()}
@@ -40,11 +40,13 @@ export default class Questions extends React.Component {
 Questions.propTypes = {
   onMount: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  toggleSolved: PropTypes.func.isRequired,
 
   questions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      solved: PropTypes.bool,
     })
   ),
   error: PropTypes.bool.isRequired
