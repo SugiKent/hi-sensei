@@ -22,9 +22,14 @@ class Api::V1::QuestionsController < SessionsController
   def toggle_solved
     @question = Question.find(params[:question_id])
     @question.toggle(:solved)
+    @question.save
 
     @questions = current_user.questions
-    render :index
+    if request.fullpath == '/questions'
+      render :index
+    else
+      render json: {question: @question, question_contents: @question.question_contents}    
+    end
   end
 
   private

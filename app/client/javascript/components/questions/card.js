@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 
 export default class Card extends React.Component {
   render() {
+
+    const word = this.props.item.solved ? "未解決にする" : '解決済みにする'
+
     return (
       <div key={`question-card-${this.props.item.id}`} className="col s12 m6">
         <div className="card hoverable">
@@ -16,7 +19,7 @@ export default class Card extends React.Component {
           </div>
           <div className="card-action">
             <Link to={`/question/${this.props.item.id}/edit`}>編集</Link>
-            <a onClick={() => this.props.toggleSolved(this.props.item.id)}>解決済みにする</a>
+            <Link to="#" onClick={() => this.props.toggleSolved(this.props.item.id)}>{word}</Link>
           </div>
         </div>
       </div>

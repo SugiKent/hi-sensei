@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './card'
+import Preloader from '../common/preloder';
 
 export default class Questions extends React.Component {
 
@@ -18,7 +19,7 @@ export default class Questions extends React.Component {
           if (error) {
             return <p>エラーが発生</p>;
           } else if (typeof questions === 'undefined') {
-            return <p>読み込み中・・・</p>
+            return <Preloader />
           } else {
             return questions.map((item,i)=>(
               <Card key={`question-${item.id}`} toggleSolved={this.props.toggleSolved} item={item} />

@@ -1,6 +1,8 @@
 import {connect} from 'react-redux';
 import QuestionEdit from '../components/questions/QuestionEdit';
 import * as actions from '../actions/QuestionEdit';
+import {toggleSolved} from '../actions/Questions';
+
 
 // containersのファイルは、配下に多くのcomponentsを抱え、それらの代表として1つの親componentをconnectさせるファイル
 // 全てのcomponentでconnectするという冗長性を防ぐ
@@ -28,7 +30,10 @@ const mapDispatchToProps = dispatch => ({
   },
   removeContent (questionId, contentIndex) {
     dispatch(actions.removeContent(questionId, contentIndex));
-  }
+  },
+  toggleSolved (questionId) {
+    dispatch(toggleSolved(questionId));
+  },
 });
 
 // ReactのComponentをReduxの流れに乗せる
