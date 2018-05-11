@@ -14,6 +14,15 @@ class QuestionForm extends React.Component {
     }
   }
 
+  moveField(fields, index, direction) {
+    if (direction == 'up') {
+      fields.move(index, index-1);
+    } else {
+      fields.move(index, index+1);
+    }
+    this.props.onSubmit;
+  }
+
   render() {
     const {handleSubmit, question} = this.props;
     const renderContents = ({ fields }) => (
@@ -32,15 +41,19 @@ class QuestionForm extends React.Component {
         <div className="Form__group">
           <div className="Form__header">
             <div className="row">
-              <div className="col s10">
+              <div className="col s8">
                 <Field
                   name={`${question_contents_attributes}.title`}
                   type="text"
                   component="input"
                 />
               </div>
-              <div className="col s2">
-                <a className="btn-small waves-effect waves-light blue-grey darken-3" style={{marginRight: '10px'}} onClick={() => this.removeField(fields, index)}><i className="material-icons left">delete</i>削除</a>
+              <div className="col s4">
+                <div className="right">
+                  <a onClick={() => this.moveField(fields, index, 'up')} href="#" style={{position:'relative',top:'7px',marginRight: '8px'}}><i className="material-icons teal-text text-darken-4">arrow_upward</i></a>
+                  <a onClick={() => this.moveField(fields, index, 'down')} href="#" style={{position:'relative',top:'7px',marginRight: '15px'}}><i className="material-icons teal-text text-darken-4">arrow_downward</i></a>
+                  <a className="btn-small waves-effect waves-light blue-grey darken-3" onClick={() => this.removeField(fields, index)}><i className="material-icons left">delete</i>削除</a>
+                </div>
               </div>
             </div>
           </div>
@@ -56,7 +69,7 @@ class QuestionForm extends React.Component {
     return (
       <form onSubmit={handleSubmit} onBlur={handleSubmit}>
         <div className="row">
-          <div className="input-field col m6 s12">
+          <div className="input-field col m8 s12">
             <Field
               id={'title'}
               name="title"
@@ -64,6 +77,8 @@ class QuestionForm extends React.Component {
               component="input"
             />
           </div>
+        </div>
+        <div className="row">
           <div className="input-field col s12">
             <FieldArray
               id='question_contents_attributes'
@@ -96,3 +111,11 @@ InitializedQuestionForm = connect(
 )(InitializedQuestionForm);
 
 export default InitializedQuestionForm;
+
+// <div className="col m4 s12">
+//   <ul id="nav-mobile" className="right">
+//     <button type="submit" className="btn-large waves-effect waves-light teal">
+//       保存
+//     </button>
+//   </ul>
+// </div>
